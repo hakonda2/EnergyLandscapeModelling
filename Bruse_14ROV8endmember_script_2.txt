@@ -1,0 +1,57 @@
+decouple ALL
+suppress ALL
+
+swap NH4+ for NH3(aq)
+
+# seawater taken from Tamaras thesis, oxygen and nitrate from Ingunn
+pH=7.9
+T=1
+Na+ 442 mmolal
+Ca++ 10.2 mmolal
+K+ 9.8 mmolal
+Fe++ .00000000001 umolal 
+Cl- 545 mmolal
+SiO2(aq) .013 umolal
+Methane(aq) .000000001 umolal
+HS- .001 umolal
+H2(aq) .0000001 umolal
+HCO3- 2.3 mmolal
+NH4+ .0000000001 umolal
+SO4-- 27.9 mmolal
+O2(aq) .405 mmolal	# 405 umolal JM, ND Loke, saturate(subcrt): 440umolal
+NO3- 12 umolal          # 12 umolal JM, 14 umolal Loke
+
+go
+
+pickup reactant = fluid
+
+reactants times 400
+
+swap H2S(aq) for HS-
+swap NH4+ for NH3(aq)
+
+pH=6.0
+T=25
+Na+ 377.0 mmolal
+Ca++ 27.9 mmolal
+K+ 34.3 mmolal
+Fe++ 7.3 umolal # 
+Cl- 469.0 mmolal # 
+SiO2(aq) 8.9 mmolal
+Methane(aq) 5.4 mmolal # Tamara
+H2S(aq) 469.0 umolal
+H2(aq) 10.0 umolal # Tamara
+HCO3- 174 mmolal
+NH4+ 33 umolal
+SO4-- .00000001 umolal
+O2(aq) .00000001 umolal
+NO3- .00000001 umolal
+
+dump
+
+T initial 229, reactants=2
+dx_init = 10^-4
+step_increase=2
+dxplot=0
+dxprint=0
+go
