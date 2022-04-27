@@ -30,7 +30,8 @@ In order to calculate energies, we need the Gibbs energy of ractions:
 <br/>
 
 
-<img src="https://render.githubusercontent.com/render/math?math=\Delta G_r = \Delta G^0+RTlnQ">
+<img src="https://render.githubusercontent.com/render/math?math=\Delta G_r = \Delta G^0"> +
+<img src="https://render.githubusercontent.com/render/math?math=RTlnQ"> 
 
 <br/>
 
