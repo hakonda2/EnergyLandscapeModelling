@@ -1,0 +1,16 @@
+tag	denom	nom	order	group
+1H2(aq)+0.5O2(aq)->H2O	H2(aq):1,O2(aq):0.5	H2O:1	1	1
+1H2S(aq)+2O2(aq)->1HSO4-+1H+	H2S(aq):1,O2(aq):2	HSO4-:1,H+:1	2 2
+1HS-+2O2(aq)->1HSO4-	HS-:1,O2(aq):2	HSO4-:1	3 2
+10H2S(aq)+16NO3-->10HSO4-+2H2O+8N2(g)+6OH-	H2S(aq):10,NO3-:16	HSO4-:10,H2O:2,N2(g):8,OH-:6	4	4
+### note: H2O not in reactants (problems with 'key error')
+10HS-+8H2O+16NO3-->10HSO4-+8N2(g)+16OH-	HS-:10,NO3-:16	HSO4-:10,N2(g):8,OH-:16	5	4
+4Fe2++O2(aq)+10H2O->4Fe(OH)3+8H+	Fe++:4,O2(aq):1	Fe(OH)3:4,H+:8	6	6	can't get this from supcrt -> add manually to dG0 file
+1Methane(aq)+2O2(aq)->CO2(aq)+2H2O	Methane(aq):1,O2(aq):2	CO2(aq):1,H2O:2	7	7
+4H2(aq)+1SO42-+2H+->H2S(aq)+4H2O	H2(aq):4,SO4--:1,H+:2	H2S(aq):1,H2O:4	8	8
+4H2(aq)+CO2(aq)->CH4(aq)+2H2O	H2(aq):4,CO2(aq):1	Methane(aq):1,H2O:2	9	9
+4H2(aq)+HCO3-+H+->CH4(aq)+3H2O	H2(aq):4,HCO3-:1,H+:1	Methane(aq):1,H2O:3	10	9
+CH4(aq)+SO42-+2H+->CO2(aq)+H2S(aq)+2H2O	Methane(aq):1,SO4--:1,H+:2	CO2(aq):1,H2S(aq):1,H2O:2	11	11
+NH4++2O2(aq)->NO3-+H2O+2H+	NH4+:1,O2(aq):2	NO3-:1,H2O:1,H+:2	12	12
+5H2(aq)+2NO3-+2H+->N2(g)+6H2O	H2(aq):5,NO3-:2,H+:2	N2(g):1	14	14
+#10CH4(aq)+16NO3-->10CO2(aq)+8N2(g)+12H20+16OH-	Methane(aq):10,NO3-:16	CO2(aq):10,H2O:12,N2(g):8,OH-:16	13	13
