@@ -33,6 +33,8 @@ In order to calculate energies, we need the Gibbs energy of ractions, $\Delta G_
 $\Delta G_(r) = \Delta G^(0) + RTlnQ$
 ```
 
+<img src="https://render.githubusercontent.com/render/math?math=\Delta G_(r) = \Delta G^(0) + RTlnQ">
+
 <br/>
 
 The Q term can be calculated from the activies in the GWB output. In order to obtain $\Delta G^(0)$ values relevant for a certain pressure and temperature range, run the script *get_dG_redox.R* [requires the 'CHNOSZ' package], e.g.:
