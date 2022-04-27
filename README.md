@@ -28,7 +28,11 @@ The  WoBe_pipline_2.sh is a wrapper script for running throgh AnalyseWoBeOutput.
 # Making a standard Gibbs energy database
 In order to calculate energies, we need the Gibbs energy of ractions, $\Delta G_(r)$ :
 <br/>
+
+```math
 $\Delta G_(r) = \Delta G^(0) + RTlnQ$
+```
+
 <br/>
 
 The Q term can be calculated from the activies in the GWB output. In order to obtain $\Delta G^(0)$ values relevant for a certain pressure and temperature range, run the script *get_dG_redox.R* [requires the 'CHNOSZ' package], e.g.:
