@@ -89,7 +89,10 @@ It will produce a *logK_out.txt* file with new logK values.
 Run *ChangeDb_v3.py* to change the database
 
 ```sh
-ChangeDb_v3.py logK_out.txt ../thermo.com.v8.r6+.dat > new_db.dat
+ChangeDb_v3.py logK_out.txt thermo.com.v8.r6+.dat > new_db.dat
 ```
+
+In the new database it should now be indicated what changes that have been made, who made them, and when.
+
 
 
