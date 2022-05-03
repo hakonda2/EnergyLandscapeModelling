@@ -47,7 +47,49 @@ For available options, run
 Rscript get_dG_redox.R -h
 ```
 
- 
+# Modifying a database
+For various reasons, it is not so easy to fully automate the process of modifying a GWB database and some manual work might be necessary. However, most modifications may be completed using the following approach indicated below. The idea is that you first run an inital mixing (e.g. at moderate temperature and pressure (using a standard database), then identify the species involved, then modify the database for the entires of those species, then rerun the mixing and repeat until no new species occur. 
 
+### Get the relevant species
+In order to see what species that are in the output and what category they belong to (e.g. gases, aqous species...), run the *Getsp.py* script:
+
+```sh
+Getsp.py <Output_from_GWB> > getsp_out.txt
+```
+
+### Check 
+The *subcrt_commands_database.txt* file is a database of species found in *dat files and a corresponding subcrt command for recalculation of logK values based in given Temp and Pres values.
+
+Check what entries that is relevant for a given gwb database, e.g.
+
+
+```sh
+CheckType.py subcrt_commands_database.txt thermo.com.v8.r6+.dat r6
+```
+
+### Make list
+
+Guided by the above step, make a list of species you want to change, e.g. *SpToFix_thermo_r6_FILE_A.txt*
+
+
+### Make an R script to run CHNOSZ
+
+*MakeRscript_v3.py* is a python script that makes an R script:
+
+```sh
+MakeRscript_v3.py  SpToFix_thermo_r6_FILE_A.txt subcrt_commands_database.txt r6 > r_script.txt
+```
+
+### Run the R script
+
+It will produce a *logK_out.txt* file with new logK values.
+
+### Change the database
+
+Run *ChangeDb_v3.py* to change the database
+
+```sh
+ChangeDb_v3.py logK_out.txt ../thermo.com.v8.r6+.dat > new_db.dat
+```
 
 

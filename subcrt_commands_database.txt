@@ -1,0 +1,59 @@
+Eh	main	subcrt(c('H2O','O2','H+','e-'),c(-2,1,4,4),c('liq','g','aq','aq'),T=temp,P=pres)	thermo,r6?
+O2(g)	main	subcrt(c('O2','O2'),c(-1,1),c('g','aq'),T=temp,P=pres)	thermo,r6?
+H2(g)	main	subcrt(c('H2','H2'),c(-1,1),c('g','aq'),T=temp,P=pres)	thermo,r6?
+N2(g)	main	subcrt(c('N2','N2'),c(-1,1),c('g','aq'),T=temp,P=pres)	thermo,r6?
+KHSO4(aq)	aqsp	subcrt(c('KHSO4','H+', 'K+','SO4-2'), c(-1,1,1,1), c('aq','aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+KCl(aq)	aqsp	subcrt(c('KCl','K+', 'Cl-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+KCl	aqsp	subcrt(c('KCl','K+', 'Cl-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,-R6
+OH-	aqsp	subcrt(c('OH-','H2O', 'H+'), c(-1,1,-1), c('aq','liq','aq'),T=temp,P=pres)	thermo,r6
+K+	basis	NA	thermo,r6
+O2(aq)	basis	NA	thermo,r6
+SiO2(aq)	basis	NA	thermo,r6
+HSO4-	aqsp	subcrt(c('HSO4-','SO4-2','H+'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,r6
+HCO3-	basis	NA	thermo,r6
+CO2(aq)	aqsp	subcrt(c('CO2','H2O', 'H+', 'HCO3-'), c(-1,-1,1,1), c('aq','liq','aq','aq'),T=temp,P=pres)	thermo,r6
+H2(aq)	redox	subcrt(c('H2','H2O', 'O2'), c(-1,1,-.5), c('aq','liq','aq'),T=temp,P=pres)	thermo,r6
+NaOH(aq)	aqsp	subcrt(c('NaOH','H+', 'H2O','Na+'), c(-1,-1,1,1), c('aq','aq','liq','aq'),T=temp,P=pres)	-THERMO,r6
+NaOH	aqsp	subcrt(c('NaOH','H+', 'H2O','Na+'), c(-1,-1,1,1), c('aq','aq','liq','aq'),T=temp,P=pres)	thermo,-R6
+H2S(aq)	aqsp	subcrt(c('H2S','H+', 'HS-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,r6?
+CH4(aq)	redox	subcrt(c('CH4','H2O', 'H+','HCO3-','O2'), c(-1,1,1,1,-2), c('aq','liq','aq','aq','aq'),T=temp,P=pres)	thermo,-R6
+CH3COO-	redox	subcrt(c('C2H3O2-','HCO3-', 'H+','O2'), c(-1,2,1,-2), c('aq','aq','aq','aq'),T=temp,P=pres)	thermo,r6?
+Na+	basis	NA	thermo?,r6?
+CaHCO3+	aqsp	subcrt(c('Ca(HCO3)+','Ca+2', 'HCO3-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,r6?
+HSiO3-	aqsp	subcrt(c('HSiO3-','H+', 'H2O','SiO2'), c(-1,-1,1,1), c('aq','aq','liq','aq'),T=temp,P=pres)	-THERMO,r6
+Cl-	basis	NA	thermo,r6?
+Fe++	basis	NA	thermo,r6?
+NaCl(aq)	aqsp	subcrt(c('NaCl','Na+', 'Cl-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+NaCl	aqsp	subcrt(c('NaCl','Na+', 'Cl-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,-R6
+HS-	redox	subcrt(c('HS-','SO4-2', 'H+', 'O2'), c(-1,1,1,-2), c('aq','aq','aq','aq'),T=temp,P=pres)	thermo,r6?
+KSO4-	aqsp	subcrt(c('KSO4-','K+', 'SO4-2'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,r6?
+Ca++	basis	NA	thermo,r6?
+CaCl+	aqsp	subcrt(c('CaCl+','Ca+2', 'Cl-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,r6
+NH4+	redox	subcrt(c('NH4+','NO3-', 'H+','H2O','O2'), c(-1,1,2,1,-2), c('aq','aq','aq','liq','aq'),T=temp,P=pres)	thermo,r6
+CaSO4	aqsp	subcrt(c('CaSO4','Ca+2', 'SO4-2'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,-R6
+CaSO4(aq)	aqsp	subcrt(c('CaSO4','Ca+2', 'SO4-2'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+# FeCl4-	aqsp	NOT IN CHNOSZ->SUPCRT	thermo,r6
+HCl	aqsp	subcrt(c('HCl','H+', 'Cl-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,-R6
+HCl(aq)	aqsp	subcrt(c('HCl','H+', 'Cl-'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+SO4--	basis	NA	thermo,?
+FeCl2	aqsp	subcrt(c('FeCl2','Cl-', 'Fe+2'), c(-1,2,1), c('aq','aq','aq'),T=temp,P=pres)	thermo (strange),-R6
+FeCl2(aq)	aqsp	subcrt(c('FeCl2','Cl-', 'Fe+2'), c(-1,2,1), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6 (strange)
+CaCl2(aq)	aqsp	subcrt(c('CaCl2','Ca+2', 'Cl-'), c(-1,1,2), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+H+	basis NA thermo,r6?
+FeCl+	aqsp	subcrt(c('FeCl+','Cl-', 'Fe+2'), c(-1,1,1), c('aq','aq','aq'),T=temp,P=pres)	thermo,r6
+NH3	aqsp	subcrt(c('NH3','NH4+', 'H+'), c(-1,1,-1), c('aq','aq','aq'),T=temp,P=pres)	thermo,-R6
+NH3(aq)	aqsp	subcrt(c('NH3','NH4+', 'H+'), c(-1,1,-1), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+NaHSiO3(aq)	aqsp	subcrt(c('NaHSiO3','H+', 'H2O','Na+','SiO2'), c(-1,-1,1,1,1), c('aq','aq','liq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+SO2(g)	gas	subcrt(c('SO2', 'H2O','O2','SO4-2','H+'), c(-1,-1,-.5,1,2),c('g','liq','aq','aq','aq'),T=temp,P=pres)	-THERMMO,r6
+CH4(g)	gas	subcrt(c('CH4', 'CH4'), c(-1,1), c('g','aq'))	thermo,r6?
+CO2(g)	gas	subcrt(c('CO2', 'H2O', 'H+', 'HCO3-'), c(-1,-1,1,1), c('g','liq','aq','aq'))	thermo,r6?
+H2(g)	gas	subcrt(c('H2', 'H2'), c(-1,1), c('g','aq'),T=temp,P=pres)	thermo,r6?
+H2S(g)	gas	subcrt(c('H2S', 'H+', 'HS-'), c(-1,1,1), c('g','aq','aq'),T=temp,P=pres)	thermo,r6?
+N2(g)	gas	subcrt(c('N2', 'N2'), c(-1,1), c('g','aq'),T=temp,P=pres)	thermo,r6?
+O2(g)	gas	subcrt(c('O2', 'O2'), c(-1,1), c('g','aq'),T=temp,P=pres)	thermo,r6?
+S2(g)	gas	subcrt(c('S2', 'H2O', 'H+', 'SO4-2', 'HS-'), c(-1,-2,2.5,.5,1.5), c('g','aq','aq','aq','aq'),T=temp,P=pres)	thermo,r6?
+NH3(g)	gas	subcrt(c('NH3','NH3'), c(-1,1), c('g','aq'),T=temp,P=pres)	-THERMO,r6
+Steam	gas	subcrt(c('H2O','H2O'), c(-1,1), c('g','liq'),T=temp,P=pres)	thermo,-R6
+H2O(g)	gas	subcrt(c('H2O','H2O'), c(-1,1), c('g','liq'),T=temp,P=pres)	-THERMO,r6
+CO(g)	gas	subcrt(c('CO','H2O','O2','HCO3-','H+'), c(-1,-1,-.5,1,1), c('g','liq','aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+
