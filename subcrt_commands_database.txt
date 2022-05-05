@@ -44,6 +44,8 @@ FeCl+	aqsp	subcrt(c('FeCl+','Cl-', 'Fe+2'), c(-1,1,1), c('aq','aq','aq'),T=temp,
 NH3	aqsp	subcrt(c('NH3','NH4+', 'H+'), c(-1,1,-1), c('aq','aq','aq'),T=temp,P=pres)	thermo,-R6
 NH3(aq)	aqsp	subcrt(c('NH3','NH4+', 'H+'), c(-1,1,-1), c('aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
 NaHSiO3(aq)	aqsp	subcrt(c('NaHSiO3','H+', 'H2O','Na+','SiO2'), c(-1,-1,1,1,1), c('aq','aq','liq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+Fe(OH)3(aq)	aqsp	subcrt(c('Fe+3','H2O', 'Fe(OH)3','H+'), c(1,3,-1,-3), c('aq','liq','cr','aq'),T=temp,P=pres)	-THERMO,r6?
+Fe(OH)3	aqsp	subcrt(c('Fe+3','H2O', 'Fe(OH)3','H+'), c(1,3,-1,-3), c('aq','liq','cr','aq'),T=temp,P=pres)	thermo?,-R6
 SO2(g)	gas	subcrt(c('SO2', 'H2O','O2','SO4-2','H+'), c(-1,-1,-.5,1,2),c('g','liq','aq','aq','aq'),T=temp,P=pres)	-THERMMO,r6
 CH4(g)	gas	subcrt(c('CH4', 'CH4'), c(-1,1), c('g','aq'))	thermo,r6?
 CO2(g)	gas	subcrt(c('CO2', 'H2O', 'H+', 'HCO3-'), c(-1,-1,1,1), c('g','liq','aq','aq'))	thermo,r6?
@@ -56,4 +58,5 @@ NH3(g)	gas	subcrt(c('NH3','NH3'), c(-1,1), c('g','aq'),T=temp,P=pres)	-THERMO,r6
 Steam	gas	subcrt(c('H2O','H2O'), c(-1,1), c('g','liq'),T=temp,P=pres)	thermo,-R6
 H2O(g)	gas	subcrt(c('H2O','H2O'), c(-1,1), c('g','liq'),T=temp,P=pres)	-THERMO,r6
 CO(g)	gas	subcrt(c('CO','H2O','O2','HCO3-','H+'), c(-1,-1,-.5,1,1), c('g','liq','aq','aq','aq'),T=temp,P=pres)	-THERMO,r6
+
 
