@@ -97,12 +97,19 @@ def print_script(commands,temp_pres_dict):
 	pres=temp_pres_dict["Pressure"]
 	temp=temp_pres_dict["Temperature"]
 	print "library('CHNOSZ')"
+	print
+	print "# add fe info"
 	print "conv=0.239    # 1J = 0.239cal"
 	print "mod.OBIGT('ferrihydrite', formula='Fe(OH)3', state='cr',G=-709500*conv, H=-828000*conv, S=127*conv, V=34.36, Cp=33.4,a=0, b=0, c=0, d=0, e=0, f=0, lambda=0) #thermo.com.r6, Majzlan 2003, Snow 2012"
 	#print "mod.obigt('twolineferrihydrite', formula='FeOOH', state='cr',G=-709500*conv, H=-828000*conv, S=127*conv, V=34.36, Cp=33.4,a=0, b=0, c=0, d=0, e=0, f=0, lambda=0,force=T) #thermo.com.r6, Majzlan 2003, Snow 2012"
 	print "temp <- "+temp
 	print "pres <- "+pres 
 	print ""
+	print "#change units"
+	print 'E.units("J")'
+	print 'T.units("K")'
+	print 'P.units("bar")'
+	print 
 	print commands
 	print """
 
