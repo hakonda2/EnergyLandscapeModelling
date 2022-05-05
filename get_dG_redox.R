@@ -60,11 +60,15 @@ commands <- c("1H2(aq)+0.5O2(aq)->H2O", "subcrt(c('H2O','H2','O2'),c(1,-1,-0.5),
 "4H2(aq)+CO2(aq)->CH4(aq)+2H2O","subcrt(c('H2','CO2','CH4','H2O'),c(-4,-1,1,2),c('aq','aq','aq','liq'),T=temp,P=pres)",
 "CH4(aq)+SO42-+2H+->CO2(aq)+H2S(aq)+2H2O","subcrt(c('CH4','SO4-2','H+','CO2','H2S','H2O'),c(-1,-1,-2,1,1,2),c('aq','aq','aq','aq','aq','liq'),T=temp,P=pres)",
 "10CH4(aq)+16NO3-->10CO2(aq)+8N2(g)+12H20+16OH-","subcrt(c('CH4','NO3-','CO2','N2','H2O','OH-'),c(-10,-16,10,8,12,16),c('aq','aq','aq','g','liq','aq'),T=temp,P=pres)",
+"4Fe+2+O2+10H2O->4F(OH3)+8H+","subcrt(c('Fe+2','O2', 'H2O', 'Fe(OH)3','H+'), c(-4,-1,-10,4,8), c('aq','aq','liq','cr','aq'),T=temp,P=pres)",
 "NH4++2O2(aq)->NO3-+H2O+2H+","subcrt(c('NH4+','O2','NO3-','H2O','H+'),c(-1,-2,1,1,2), c('aq','aq','aq','liq','aq'),T=temp,P=pres)")
 
 
+# add fe info
+conv=0.239    # 1J = 0.239cal
+mod.OBIGT('ferrihydrite', formula='Fe(OH)3', state='cr',G=-709500*conv, H=-828000*conv, S=127*conv, V=34.36, Cp=33.4,a=0, b=0, c=0, d=0, e=0, f=0, lambda=0)
 
-
+# change units
 E.units("J")
 T.units("K")
 P.units("bar")
