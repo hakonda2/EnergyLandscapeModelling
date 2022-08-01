@@ -1,0 +1,177 @@
+########### default params
+# output
+filename_out <- "out.pdf"
+SFINX_2012 <- FALSE
+BRUSE_2014 <- FALSE
+
+# plot settings
+max_temp <- 130
+min_temp <- 0
+
+######### debug
+#infile <- "/Users/nimhd/CHIMNEY_SVEN/GWB/test_energy.txt"
+#args=c()
+
+
+## arguments
+args <- commandArgs(TRUE)
+if ("-i" %in% args){
+	p<-which(args=="-i")	
+	infile<-args[p+1]
+}
+if ("-o" %in% args){
+	p<-which(args=="-o")	
+	filename_out<-args[p+1]
+}
+
+if ("-mt" %in% args){
+	p<-which(args=="-mt")	
+	max_temp<-as.numeric(args[p+1])
+}
+if ("-sfinx_2012" %in% args){
+	SFINX_2012=TRUE
+}
+if ("-bruse_2014" %in% args){
+	BRUSE_2014=TRUE
+}
+
+#### print params
+print(infile)
+print(max_temp)
+
+
+
+####### main ###
+
+## read and sort on temp
+print ("Reading input")
+mydata <-read.table(file=infile, header=T, sep="\t")
+
+print ("Sorting input")
+mydata <-mydata[order(mydata$temp, decreasing=T),]
+
+
+## remove temperatures above threshold
+rempos <- which(mydata$temp > max_temp)
+if (length(rempos)>0){
+	mydata <- mydata[-rempos,]
+}
+
+## sum HS- and H2S
+n1 <- grep("HS", names(mydata))
+n2 <- grep("H2S", names(mydata))
+mydata$SumSulfide <- mydata[,n2] + mydata[,n1]
+mydata <- mydata[,-c(n1,n2)]
+
+## sum HCO3-, MgHCO3-, NaHCO3(aq)
+n1 <- grep("^HCO3", names(mydata))
+n2 <- grep("^MgHCO3", names(mydata))
+n3 <- grep("^NaHCO3", names(mydata))
+n4 <- grep("^CO2.aq.", names(mydata))
+mydata$SumCO2 <- mydata[,n4]+mydata[,n3] + mydata[,n2] + mydata[,n1]
+mydata <- mydata[,-c(n1,n2,n3,n4)]
+
+## sum sulfates (Careful here: in AnalyseWoBe18 SO4 is summed up already
+n1 <- grep("^SO4", names(mydata))
+n2 <- grep("^MgSO4", names(mydata))
+n3 <- grep("^CaSO4", names(mydata))
+n4 <- grep("^KSO4", names(mydata))
+mydata$SumSO4 <- mydata[,n1]
+mydata <- mydata[,-c(n1,n2,n3,n4)]
+
+## minimize data
+u <- unique(mydata$temp)
+pos <- match(u, mydata$temp)
+mydata <- mydata[pos,]
+
+## remove unwanted
+if (BRUSE_2014 | SFINX_2012){
+n1 <- grep("^NH4", names(mydata))
+n2 <- grep("^Fe", names(mydata))
+n3 <- grep("^H2", names(mydata))
+n4 <- grep("NO3", names(mydata))
+mydata <- mydata[,-c(n1,n2,n3,n4)]
+}
+
+## convert from molal to mmolal
+for (i in 5:dim(mydata)[2]){
+	mydata[,i] <- mydata[,i]*1000
+	}
+
+## convert SO4 back to molal
+if (SFINX_2012){
+	mydata$SumSO4 <- mydata$SumSO4/1000
+}
+
+## define plot settings
+max_conc <- max(mydata[,5:dim(mydata)[2]])
+if (BRUSE_2014){
+	max_conc <- 30
+}
+legend_ys <- ((1:(dim(mydata)[2]-4)/(dim(mydata)[2]-4))*(max_conc/2))+(max_conc/2)
+cols=rainbow(dim(mydata)[2]-3)
+
+
+
+cl<-1.3 # cex.lab
+ca<-1.0 # cex.axes
+parmar2<-4.2 # left margin
+lw <- 2 # linewidth
+lt <- c(1,1,1) # linetype for each plot
+ylab1<- "pH"
+ylab2<-"conc"
+m1<-"pH"
+m2<-"conc"
+
+## make empty plot
+pdf(filename_out)
+par(mfrow=c(1,2))
+par(mar=c(1,parmar2,5,.2))
+
+########### plot1 - pH
+plot(mydata$temp, mydata$pH, type="l",xlim=c(min_temp,max_temp))
+if (SFINX_2012){
+	axis(3, at=c(2.0,2.1, 2.9, 6.7, 11.0,18), tick=T, labels=c(5000,400,50,10, 5,3), mgp=c(2,.5,0), cex.axis=ca, srt=90)
+}
+if (BRUSE_2014){
+	axis(3, at=c(2.0,2.6, 6.5, 25.0, 48.0,77.9), tick=T, labels=c(5000,400,50,10, 5,3), mgp=c(2,.5,0), cex.axis=ca, srt=90)
+}
+
+
+
+########### plot2 - conc
+print("HERE")
+print(max_temp)
+plot(1,xlim=c(min_temp,max_temp), ylim=c(0,max_conc), ylab=ylab2, xlab="", type='n', main=m2, cex.lab=cl,cex.axis=ca, mgp=c(2,.5,0))
+if (SFINX_2012){
+	axis(1, at=c(0,20,40), label=F, tick=T, mgp=c(2,.5,0), cex.axis=ca)
+}
+if (BRUSE_2014){
+	axis(1, at=c(0,20,40,60,80,100,120), label=F, tick=T, mgp=c(2,.5,0), cex.axis=ca)
+}
+
+
+
+#### indicating mixing on 3d axis
+if (SFINX_2012){
+	axis(3, at=c(2.0,2.1, 2.9, 6.7, 11.0,18), tick=T, labels=c(5000,400,50,10, 5,3), mgp=c(2,.5,0), cex.axis=ca, srt=90)
+}
+if (BRUSE_2014){
+	axis(3, at=c(2.0,2.6, 6.5, 25.0, 48.0,77.9), tick=T, labels=c(5000,400,50,10, 5,3), mgp=c(2,.5,0), cex.axis=ca, srt=90)
+}
+
+
+## draw lines of (selected) chemical species
+
+for (n in 5:dim(mydata)[2]) {
+	nam=names(mydata)[n]
+	print(nam)
+	lines(mydata$temp, mydata[,n], col=cols[n-4])
+	
+	########## legend
+	text(80,legend_ys[n-4],nam, cex=.8,pos=4)
+	lines(c(70,75),rep(legend_ys[n-4],2),col=cols[n-4], lwd=lw)
+	
+}
+
+dev.off()
