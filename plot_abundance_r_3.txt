@@ -1,0 +1,109 @@
+
+########### default params
+# output
+filename_out <- "out.pdf"
+# plot settings
+max_temp <- 130
+max_abundance_threshold <- 0
+
+## debug
+#infile <- "/Users/nimhd/CHIMNEY_SVEN/GWB/test.txt"
+#args=c()
+
+
+## arguments
+args <- commandArgs(TRUE)
+if ("-i" %in% args){
+	p<-which(args=="-i")	
+	infile<-args[p+1]
+}
+if ("-o" %in% args){
+	p<-which(args=="-o")	
+	filename_out<-args[p+1]
+}
+
+if ("-mt" %in% args){
+	p<-which(args=="-mt")	
+	max_temp<-as.numeric(args[p+1])
+}
+
+if ("-ma" %in% args){
+	p<-which(args=="-ma")	
+	max_abundance_threshold<-as.numeric(args[p+1])
+}
+
+if ("-htt" %in% args){
+	p<-which(args=="-htt")	
+	higher_temp_threshold<-as.numeric(args[p+1])
+}
+
+if ("-ltt" %in% args){
+	p<-which(args=="-ltt")	
+	lower_temp_threshold<-as.numeric(args[p+1])
+}
+
+
+### get data from infile
+mydata<-read.table(file=infile, header=F, sep="\t")
+
+
+## remove temperatures below threshold
+#higher_temp_threshold <- 130
+rempos <- which(mydata$V4 > higher_temp_threshold)
+if (length(rempos > 0)){
+	mydata <- mydata[-rempos,]
+}
+
+## remove low temperatures
+#lower_temp_threshold <- 2.4
+rempos <- which(mydata$V4 < lower_temp_threshold)
+if (length(rempos > 0)){
+	mydata <- mydata[-rempos,]
+}
+### Extract data
+mydata<-mydata[order(mydata$V4, decreasing=T),]
+grdata <- mydata[grep("ABMODEL_GROUP", mydata[,1]),]
+groups <- as.vector(unique(grdata[,2]))
+
+
+
+### Plot settings
+ylabtxt<-'Relative abundance'
+maintxt<-'ABUNDANCEPLOT'
+min_temp <- 0
+
+
+legend_ys <- 1:length(groups)/length(groups)
+
+cols=rainbow(length(groups))
+#cols[grep('sulfox', groups)] = 'red'
+#cols[grep('srb', groups)] = 'orange' 
+#cols[grep('anme', groups)] = 'black'
+#cols[grep('feo', groups)] = 'brown'
+#cols[grep('methox', groups)] = 'royalblue'
+#cols[grep('methanogens', groups)] = 'darkgrey'
+#cols[grep('amo', groups)] = 'darkgreen'
+cl <- 1.5 # cex.lab
+pdf(file=filename_out)
+
+### Plot margin
+par(mar=c(2,3.5,1,1))
+
+### make empty plot
+plot(1,xlim=c(min_temp,max_temp), ylim=c(0,1), ylab=ylabtxt, xlab="", type='n', mgp=c(2, .5, 0), main=maintxt, cex.lab=cl)
+
+
+### draw lines
+for (i in 1:length(groups)){
+	ldata <- grdata[grep(groups[i],grdata[,2], fixed=T),]
+
+	if (max(ldata$V5) >= max_abundance_threshold){
+		lines(ldata$V4,ldata$V5,col=cols[i], lwd=1.5)
+
+		# legend
+		text(80,legend_ys[i],groups[i], cex=.8,pos=4)
+		lines(c(70,75),rep(legend_ys[i],2),col=cols[i], lwd=1.5)
+	}
+}
+
+dev.off()
