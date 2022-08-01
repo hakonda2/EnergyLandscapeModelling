@@ -19,6 +19,19 @@ In order to run it on a single output from GWB, one could run
 AnalyseWoBeOutput_v17.py React_output_400x.txt Redox.txt dG.txt > Output.txt
 ```
 
+# Make plots
+Prepare a *Chemistry* file, an *Energy* file, and an *Abundance* file. Run R scripts to produce graphs, e.g.:
+
+```sh
+
+Rscript plot_chemistry_r_2.txt -i Total_Chemistry_C_s1.txt -o Total_Chemistry_C_s1_nov16_mt120.pdf -mt 120 -bruse_2014
+
+Rscript plot_energy_r_3.txt -ltt 2.5 -htt 121 -mt 120 -i Total_Energy_E_s1.txt -o Total_Energy_E_s1_mt120_htt121_ltt2c5.pdf -bruse_2014
+
+Rscript plot_abundance_r_3.txt -i Total_Abundance_A_s1.txt -htt 121 -ltt 2.5 -mt 120 -o Total_Abundance_A_s1_mt120_htt121_ltt2c5.pdf
+
+```
+
 ### AnalyseWoBeOutput options
 LATER
 
@@ -95,17 +108,5 @@ ChangeDb_v3.py logK_out.txt thermo.com.v8.r6+.dat > new_db.dat
 In the new database it should now be indicated what changes that have been made, who made them, and when.
 
 
-### Make plots
 
-Split files into a *Chemistry* file, an *Energy* file, and an *Abundance* file. Run R scripts to produce graphs, e.g.:
-
-```sh
-
-Rscript plot_chemistry_r_2.txt -i Total_Chemistry_C_s1.txt -o Total_Chemistry_C_s1_nov16_mt120.pdf -mt 120 -bruse_2014
-
-Rscript plot_energy_r_3.txt -ltt 2.5 -htt 121 -mt 120 -i Total_Energy_E_s1.txt -o Total_Energy_E_s1_mt120_htt121_ltt2c5.pdf -bruse_2014
-
-Rscript plot_abundance_r_3.txt -i Total_Abundance_A_s1.txt -htt 121 -ltt 2.5 -mt 120 -o Total_Abundance_A_s1_mt120_htt121_ltt2c5.pdf
-
-```
 
